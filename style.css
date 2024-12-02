@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+:root{
+    --White: #ffffff;
+    --navBackground-Dark-Grayish-Blue: #0a1113;
+    --fontColor-Teal-Blue: #1f4c58;
+    --dark-yellow: #F4CE14;
+    --main-font:  400 normal 1rem "Roboto", sans-serif;
+
+    /* new colors  */
+    --dark-background: #070F2B;
+    --light-background: #535C91;
+    --very-light-background: #9290C3;
+    --Off-White: #f3f3f3;
+    --background-Light-Gray: #f2f2f2;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul li{
+    list-style-type: none;
+}
+body{
+    overflow: hidden;
+}
+
+.dashboard{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-Light-Gray);
+    display: grid;
+    grid-template-columns: 20% 80%;
+    font: var(--main-font);
+}
+
+.navbar-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+    color: white;
+    background-color: var(--dark-background);
+    position: relative;
+}
+
+.navbar-container .light-blur {
+    position: absolute;
+    background-color: var(--very-light-background);
+    height: 100px;
+    width: 100px;
+    top: 60px;
+    left: 60px;
+    filter: blur(40px);
+}
+
+.navbar-container .light-blur2 {
+    position: absolute;
+    background-color: var(--light-background);
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    filter: blur(40px);
+}
+
+.navbar-container .uniquifier{
+    font-size: 50px;
+    font-family: "Edu AU VIC WA NT Arrows", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.navbar-container .logo{
+    margin: 4px;
+    transform: rotate(-10deg);
+    z-index: 2;
+    background-color: transparent;
+}
+
+.navbar-container .user{
+    width: 80%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.navbar-container .user .user-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #1f4c58; */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 35px;
+}
+
+.navbar-container .links {
+    width: 70%;
+    height: 160px;
+}
+
+.navbar-container .links .link{
+    display: flex;
+    column-gap: 20px;
+    padding: 10px;
+}
+
+.navbar-container .links .link  .keyword-link a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.dashboard-main {
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: grid;
+    grid-template-rows: 12% 44% 44%;
+    row-gap: 10px;
+}
+
+
+.dashboard-main header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    padding-right: 40px;
+}
+
+.dashboard-main header .search-section,
+.dashboard-main header .number-of-video{
+    position: relative;
+    border: 2px solid var(--dark-background);
+    width: 250px;
+    border-radius: 10px;
+}
+
+.dashboard-main header .number-of-video {
+    width: 100px;
+}
+
+.dashboard-main header .search-section input,
+.dashboard-main header .number-of-video input{
+    width: calc(100% - 40px);
+    background: transparent;
+    height: 30px;
+    border-radius: 10px 0px 0 10px;
+    padding: 10px;
+    font-size: 17px;
+    outline: none;
+    border: none;
+}
+
+.dashboard-main header .number-of-video input{
+    width: 100%;
+}
+
+.dashboard-main header  .url-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 370px;
+}
+
+
+.dashboard-main header .search-section .fa-magnifying-glass {
+    position: absolute;
+    width: 36px;
+    font-size: 20px;
+    height: 30px;
+    top: 5px;
+    right: 0;
+    cursor: pointer;
+}
+
+
+.dashboard-main main {
+    font-weight: 600;
+    height: 75vh;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: 
+      "big big big big"
+      "big big big big";
+    padding: 10px;
+    row-gap: 30px;
+} 
+  
+.dashboard-main .tranding {
+    font-weight: 600;
+    padding: 20px;
+    grid-area: big; 
+    width: 99%;
+    background-color: #B3C8CF;
+    color: var(--dark-background);
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 5% 95%;
+    row-gap: 10px;
+}
+
+.dashboard-main .tranding .current-playing-VD {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    padding: 10px;
+}
+::-webkit-scrollbar{
+    width: 0;
+}
+
+.dashboard-main .tranding .video-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+    border-radius: 10px;
+}
+
+
+button.remove-video-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    background-color: var(--light-background);
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.dashboard-main .tranding .video-area .video img {
+    width: 100%;
+    height: 600%;
+    border-radius: 10px;
+}
+
+.dashboard-main .tranding .video-area .description {
+    /* height: max-content;
+    width: 100%; */
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.dashboard-main main .upper-content {
+    color: var(--Off-White);
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.dashboard-main main .hours {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    grid-area: small1; 
+    background-color: var(--light-background);
+    border-radius: 10px; 
+}
+  
+.dashboard-main main .times {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;    
+    grid-area: small2; 
+    background-color: var(--very-light-background); 
+    border-radius: 10px;
+}
+
+.dashboard-main main .menu{
+    font-size: 25px;
+}
+

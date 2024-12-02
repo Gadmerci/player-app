@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Dashboard</title>
+    <script src="https://kit.fontawesome.com/8e48bddc26.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar Navigation -->
+        <nav class="navbar-container">
+            <div class="logo uniquifier">
+                <h1>Player</h1>
+            </div>
+            <div class="light-blur"></div>
+            <div class="light-blur2"></div>
+            <div class="user">
+                <div class="user-img">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="user-name">
+                    <p>Unknown</p>
+                </div>
+            </div>
+            <div class="links">
+                <ul>
+                    <li class="link">
+                        <div class="icon">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <div class="keyword-link">
+                            <a href="index.html">Home</a>
+                        </div>
+                    </li>
+                    <li class="link">
+                        <div class="icon">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <div class="keyword-link">
+                            <a href="#videoOpener">Video Opener</a>
+                        </div>
+                    </li>
+                    <li class="link">
+                        <div class="icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <div class="keyword-link">
+                            <a href="../counter/index.html">Counter</a>
+                        </div>
+                    </li>
+                    <li class="link">
+                        <div class="icon">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div class="keyword-link">
+                            <a href="../time spent/index.html">Time Spent</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard-main">
+            <header>
+                <div class="header-content">
+                    <h1>Welcome To Video Player Dashboard</h1>
+                    <p>Enjoy your day?</p>
+                </div>
+                <div class="url-inputs">
+                    <div class="search-section">
+                        <input type="text" id="videoUrl" placeholder="Enter YouTube URL">
+                        <i class="fa-solid fa-magnifying-glass" id="addVideoBtn"></i>
+                    </div>
+                    <div class="number-of-video">
+                        <input type="text" id="number-of-url" placeholder="Times">
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div id="videoOpener" class="tranding">
+                    <h2>Video Opener</h2>
+                    <div id="videoContainer" class="current-playing-VD"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
