@@ -269,6 +269,96 @@
 
 
 // Variables
+//let videoCounter = {}; // Tracks how many times each video URL has been opened
+//let totalTimeSpent = 0; // Total time spent watching videos (in hours)
+//let dailyTimeSpent = 0; // Daily time spent watching videos (in hours)
+
+// Add Video Function
+//function addVideo() {
+    // const videoUrl = document.getElementById('videoUrl').value;
+    // const videoId = extractVideoId(videoUrl);
+    // const numOfVideos = parseInt(document.getElementById('number-of-url').value, 10) || 1; // Default to 1 if no value is entered
+
+//     if (videoId && numOfVideos > 0) {
+//         for (let i = 0; i < numOfVideos; i++) {
+//             addVideoToDOM(videoId, videoUrl); // Add the video to the DOM
+//         }
+//         trackVideoCounter(videoUrl, numOfVideos); // Update the counter for the video
+//         updateCounterTable(); // Update the counter table
+//         updateTimeSpent(numOfVideos); // Update time spent
+//         document.getElementById('videoUrl').value = ''; // Clear video URL input
+//         document.getElementById('number-of-url').value = ''; // Clear number input field
+//     } else {
+//         alert('Please enter a valid YouTube URL and a positive number!');
+//     }
+// }
+
+// // Extract Video ID Function
+// function extractVideoId(url) {
+//     const regex = /(?:https?:\/\/(?:www\.)?(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/))([a-zA-Z0-9_-]{11})/;
+//     const match = url.match(regex);
+//     return match ? match[1] : null;
+// }
+
+// // Add Video to DOM Function (No URL Display)
+// function addVideoToDOM(videoId, url) {
+//     const videoContainer = document.getElementById('videoContainer');
+
+//     const videoArea = document.createElement('div');
+//     videoArea.classList.add('video-area');
+
+//     const videoFrame = document.createElement('iframe');
+//     videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+//     videoFrame.width = '300';
+//     videoFrame.height = '200';
+//     videoFrame.allowFullscreen = true;
+
+//     const removeButton = document.createElement('button');
+//     removeButton.classList.add('remove-video-btn');
+//     removeButton.textContent = 'Remove';
+//     removeButton.addEventListener('click', () => videoContainer.removeChild(videoArea));
+
+//     videoArea.appendChild(videoFrame);
+//     videoArea.appendChild(removeButton);
+//     videoContainer.appendChild(videoArea);
+// }
+
+// // Track Video Counter Function
+// function trackVideoCounter(url, numOfVideos) {
+//     videoCounter[url] = (videoCounter[url] || 0) + numOfVideos;
+// }
+
+// // Update Counter Table Function
+// function updateCounterTable() {
+//     const counterTableBody = document.querySelector('#counterTable tbody');
+//     counterTableBody.innerHTML = ''; // Clear existing rows
+
+//     for (const [url, count] of Object.entries(videoCounter)) {
+//         const row = `<tr><td>${url}</td><td>${count}</td></tr>`;
+//         counterTableBody.innerHTML += row;
+//     }
+// }
+
+// // Update Time Spent Function
+// function updateTimeSpent(numOfVideos) {
+//     const timePerVideo = 0.5; // Assume each video takes 30 minutes
+//     dailyTimeSpent += timePerVideo * numOfVideos;
+//     totalTimeSpent += timePerVideo * numOfVideos;
+
+//     document.getElementById('dailyTime').textContent = `Time spent today: ${dailyTimeSpent.toFixed(1)} hours`;
+//     document.getElementById('weeklyTime').textContent = `Time spent this week: ${totalTimeSpent.toFixed(1)} hours`;
+// }
+
+// // Event Listeners
+// document.getElementById('addVideoBtn').addEventListener('click', addVideo); // Add video button
+
+
+
+
+
+
+//less space user app 
+// Variables
 let videoCounter = {}; // Tracks how many times each video URL has been opened
 let totalTimeSpent = 0; // Total time spent watching videos (in hours)
 let dailyTimeSpent = 0; // Daily time spent watching videos (in hours)
@@ -281,7 +371,7 @@ function addVideo() {
 
     if (videoId && numOfVideos > 0) {
         for (let i = 0; i < numOfVideos; i++) {
-            addVideoToDOM(videoId, videoUrl); // Add the video to the DOM
+            addVideoPlaceholder(videoId, videoUrl); // Add a placeholder for the video
         }
         trackVideoCounter(videoUrl, numOfVideos); // Update the counter for the video
         updateCounterTable(); // Update the counter table
@@ -300,27 +390,47 @@ function extractVideoId(url) {
     return match ? match[1] : null;
 }
 
-// Add Video to DOM Function (No URL Display)
-function addVideoToDOM(videoId, url) {
+// Add Video Placeholder Function
+function addVideoPlaceholder(videoId, url) {
     const videoContainer = document.getElementById('videoContainer');
 
     const videoArea = document.createElement('div');
     videoArea.classList.add('video-area');
 
-    const videoFrame = document.createElement('iframe');
-    videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    videoFrame.width = '300';
-    videoFrame.height = '200';
-    videoFrame.allowFullscreen = true;
+    const thumbnail = document.createElement('img');
+    thumbnail.src = `https://img.youtube.com/vi/${videoId}/0.jpg`; // YouTube thumbnail
+    thumbnail.alt = 'Video Thumbnail';
+    thumbnail.width = 300;
+    thumbnail.height = 200;
+
+    const loadButton = document.createElement('button');
+    loadButton.classList.add('load-video-btn');
+    loadButton.textContent = 'Load Video';
+    loadButton.addEventListener('click', () => {
+        loadVideo(videoArea, videoId);
+    });
 
     const removeButton = document.createElement('button');
     removeButton.classList.add('remove-video-btn');
     removeButton.textContent = 'Remove';
     removeButton.addEventListener('click', () => videoContainer.removeChild(videoArea));
 
-    videoArea.appendChild(videoFrame);
+    videoArea.appendChild(thumbnail);
+    videoArea.appendChild(loadButton);
     videoArea.appendChild(removeButton);
     videoContainer.appendChild(videoArea);
+}
+
+// Load Video Function
+function loadVideo(videoArea, videoId) {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    iframe.width = '300';
+    iframe.height = '200';
+    iframe.allowFullscreen = true;
+
+    videoArea.innerHTML = ''; // Clear previous content (thumbnail and buttons)
+    videoArea.appendChild(iframe);
 }
 
 // Track Video Counter Function
