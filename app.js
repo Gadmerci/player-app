@@ -84,6 +84,7 @@ function onPlayerStateChange(event) {
 
         // Generate a random delay between 3 and 25 seconds
         const randomDelay = Math.floor(Math.random() * (25 - 3 + 1)) + 3;
+        console.log(randomDelay)
 
         // Reopen the video after the random delay
         setTimeout(() => {
