@@ -3,6 +3,7 @@ let videoCounter = {}; // Tracks how many times each video URL has been opened
 let totalTimeSpent = 0; // Total time spent watching videos (in hours)
 let dailyTimeSpent = 0; // Daily time spent watching videos (in hours)
 let players = {}; // Stores YouTube player instances
+let videoInstanceCounter = 0; // Unique counter for each video instance
 
 // Add Video Function
 function addVideo() {
@@ -35,12 +36,15 @@ function extractVideoId(url) {
 function addVideoToDOM(videoId) {
     const videoContainer = document.getElementById('videoContainer');
 
+    // Create a unique ID for each video instance
+    const videoInstanceId = `video-${videoId}-${videoInstanceCounter++}`;
+
     const videoArea = document.createElement('div');
     videoArea.classList.add('video-area');
-    videoArea.id = `video-${videoId}`; // Unique ID for each video container
+    videoArea.id = videoInstanceId; // Use the unique ID
 
     const videoFrame = document.createElement('iframe');
-    videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+    videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&enablejsapi=1`; // Add mute=1 for autoplay
     videoFrame.width = '300';
     videoFrame.height = '200';
     videoFrame.allowFullscreen = true;
@@ -56,12 +60,12 @@ function addVideoToDOM(videoId) {
     videoContainer.appendChild(videoArea);
 
     // Initialize the YouTube player
-    initializePlayer(videoId, videoFrame);
+    initializePlayer(videoInstanceId, videoFrame);
 }
 
 // Initialize YouTube Player
-function initializePlayer(videoId, videoFrame) {
-    players[videoId] = new YT.Player(videoFrame, {
+function initializePlayer(videoInstanceId, videoFrame) {
+    players[videoInstanceId] = new YT.Player(videoFrame, {
         events: {
             'onStateChange': onPlayerStateChange // Listen for state changes
         }
@@ -73,18 +77,21 @@ function onPlayerStateChange(event) {
     const videoId = event.target.getVideoData().video_id;
 
     if (event.data === YT.PlayerState.ENDED) {
+        // Find the video instance ID from the player object
+        const videoInstanceId = Object.keys(players).find(key => players[key] === event.target);
+
         // Remove the video from the DOM when it ends
-        const videoArea = document.getElementById(`video-${videoId}`);
+        const videoArea = document.getElementById(videoInstanceId);
         if (videoArea) {
             videoArea.remove();
         }
 
         // Remove the player instance from the players object
-        delete players[videoId];
+        delete players[videoInstanceId];
 
         // Generate a random delay between 3 and 25 seconds
         const randomDelay = Math.floor(Math.random() * (25 - 3 + 1)) + 3;
-        console.log(randomDelay)
+        console.log(randomDelay);
 
         // Reopen the video after the random delay
         setTimeout(() => {
