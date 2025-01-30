@@ -44,7 +44,7 @@ function addVideoToDOM(videoId) {
     videoArea.id = videoInstanceId; // Use the unique ID
 
     const videoFrame = document.createElement('iframe');
-    videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&enablejsapi=1`; // Add mute=1 for autoplay
+    videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`; // Removed mute=1
     videoFrame.width = '300';
     videoFrame.height = '200';
     videoFrame.allowFullscreen = true;
